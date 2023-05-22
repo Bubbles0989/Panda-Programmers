@@ -36,6 +36,11 @@ public class HomeController : Controller
         _spotifyAuthNeededRepository = spotifyAuthNeededRepository;
     }
 
+    public IActionResult Frog() 
+    {
+        return View();        
+    }
+
     public async Task<IActionResult> Index()
     {
         ViewBag.Error = TempData["Error"];
