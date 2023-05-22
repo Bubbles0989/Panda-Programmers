@@ -181,115 +181,161 @@ public class SpotifyAuthServiceTests
         RecommendationsResponse recommendationResponse = new RecommendationsResponse();
         RecommendationsRequest recommendationRequest = new RecommendationsRequest();
         RecommendDTO recommendDTO = new RecommendDTO();
+        
+        recommendDTO.seed = new List<string>();
+        recommendDTO.market = "EU";
+        recommendDTO.limit = 5;
+        recommendDTO.target_valence = 0;
+        recommendDTO.target_acousticness = 0;
+        recommendDTO.target_danceability = 0;
+        recommendDTO.target_energy = 0;
+        recommendDTO.target_instrumentalness = 0;
+        recommendDTO.target_liveness = 0;
+        recommendDTO.target_popularity = 0;
+        recommendDTO.target_speechiness = 0;
+        recommendDTO.target_tempo = 0;
+
+        recommendDTO.seed.Add("123abc");
+        recommendDTO.seed.Add("456def");
+        recommendDTO.seed.Add("789ghi");
+        recommendDTO.seed.Add("101jkl");
+        recommendDTO.seed.Add("121mno");
 
         _spotifyClient.Setup(u => u.Browse.GetRecommendations(recommendationRequest, It.IsAny<System.Threading.CancellationToken>())).Returns(
             Task.FromResult(recommendationResponse));
 
-        RecommendationsResponse returnResponse = await _spotifyService.GetRecommendationsAsync(recommendDTO, _spotifyClient.Object);
+        RecommendationsResponse returnResponse = new RecommendationsResponse();
+
+        returnResponse = await _spotifyService.GetRecommendationsAsync(recommendDTO, _spotifyClient.Object);
 
         Assert.AreEqual(returnResponse, null); // supposed to be compared to recommendationResponse but its returning null
 
     }
 
     [Test]
-    public async Task GetRecommendationsArtistBasedAsync()
+    public async Task GetRecommendationsArtistBasedAsyncReturnsRecommendationRequestCorrectly()
     {
-        
+        RecommendationsResponse recommendationResponse = new RecommendationsResponse();
+        RecommendationsRequest recommendationRequest = new RecommendationsRequest();
+        RecommendDTO recommendDTO = new RecommendDTO();
+
+        _spotifyClient.Setup(u => u.Browse.GetRecommendations(recommendationRequest, It.IsAny<System.Threading.CancellationToken>())).Returns(
+            Task.FromResult(recommendationResponse));
+
+        RecommendationsResponse returnResponse = await _spotifyService.GetRecommendationsArtistBasedAsync(recommendDTO, _spotifyClient.Object);
+
+        Assert.AreEqual(returnResponse, null); // supposed to be compared to recommendationResponse but its returning null
     }
 
     [Test]
-    public async Task GetRecommendationsGenreBased()
+    public async Task GetRecommendationsGenreBasedReturnsRecommendationRequestCorrectly()
     {
-        
+        RecommendationsResponse recommendationResponse = new RecommendationsResponse();
+        RecommendationsRequest recommendationRequest = new RecommendationsRequest();
+        RecommendDTO recommendDTO = new RecommendDTO();
+
+        recommendDTO.genre = new List<string>();
+        recommendDTO.market = "EU";
+        recommendDTO.limit = 5;
+
+        recommendDTO.genre.Add("pop");
+        recommendationRequest.SeedGenres.Add("pop");
+
+        _spotifyClient.Setup(u => u.Browse.GetRecommendations(recommendationRequest, It.IsAny<System.Threading.CancellationToken>())).Returns(
+            Task.FromResult(recommendationResponse));
+
+        RecommendationsResponse returnResponse = await _spotifyService.GetRecommendationsGenreBased(recommendDTO, _spotifyClient.Object);
+
+        Assert.AreEqual(returnResponse, null); // supposed to be compared to recommendationResponse but its returning null
     }
 
     [Test]
     public async Task ConvertToFullTrackAsync()
     {
-        
+        Assert.Fail();
     }
 
     [Test]
     public async Task SearchTopGenrePlaylistTrack()
     {
-        
+        Assert.Fail();
     }
 
     [Test]
     public async Task GetUserProfileClientAsync()
     {
-        
+        Assert.Fail();
     }
 
     [Test]
     public async Task GetPlaylistsClientAsync()
     {
-        
+        Assert.Fail();
     }
 
     [Test]
     public async Task AddSongsToPlaylistAsync()
     {
-        
+        Assert.Fail();
     }
 
     [Test]
     public async Task ChangeCoverForPlaylist()
     {
-        
+        Assert.Fail();
     }
 
     [Test]
     public async Task CreateNewSpotifyPlaylistAsync()
     {
-        
+        Assert.Fail();
     }
 
     [Test]
     public async Task GetAuthTopTracksAsync()
     {
-        
+        Assert.Fail();
     }
 
     [Test]
     public async Task GetAuthFeatPlaylistsAsync()
     {
-        
+        Assert.Fail();
     }
 
     [Test]
     public async Task GetAuthPersonalPlaylistsAsync()
     {
-        
+        Assert.Fail();
     }
 
     [Test]
     public async Task GetTopTracksAsync()
     {
-        
+        Assert.Fail();
     }
 
     [Test]
     public async Task GetPlaylistFromIDAsync()
     {
-        
+        Assert.Fail();
     }
 
     [Test]
     public async Task GetTracksClientAsync()
     {
-        
+        Assert.Fail();
     }
 
     [Test]
     public async Task GetSpotifyTrackByID()
     {
-        
+        Assert.Fail();
     }
 
     [Test]
     public async Task GetArtistById()
     {
-        
+        Assert.Fail();
     }
 }
